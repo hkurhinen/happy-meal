@@ -1,65 +1,49 @@
 doctype html
 html
-  include includes/head.pug
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    
+    title #{title}
+    
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    link(rel='stylesheet', href='/css/idle.css')
   body
-    .container-fluid
-      h1 #{device.food.name}
+    .header
+      .row
+        .col-xs-10
+          h1 #{device.food.name}
+        .col-xs-2
+          h3 #{sprintf('%1.0f', device.food.energy)} kcal / 100g
+    .container
       br
       .row
         .col-xs-6
           .row
-            .col-xs-6
-              p Energy:
-            .col-xs-6
-              p #{device.food.energy}
+            .col-xs-4
+              h3 Protein:
+            .col-xs-8
+              h3 #{sprintf('%0.2f', device.food.protein)} g
           .row
-            .col-xs-6
-              p Protein:
-            .col-xs-6
-              p #{device.food.protein}
+            .col-xs-4
+              h3 Fat:
+            .col-xs-8
+              h3  #{sprintf('%0.2f', device.food.fat)} g
           .row
-            .col-xs-6
-              p Fat:
-            .col-xs-6
-              p #{device.food.fat}
-          .row
-            .col-xs-6
-              p Alcohol:
-            .col-xs-6
-              p #{device.food.alcohol}
-          .row
-            .col-xs-6
-              p Organic acids:
-            .col-xs-6
-              p #{device.food.organicAcids}
-          .row
-            .col-xs-6
-              p Sugar alcohol:
-            .col-xs-6
-              p #{device.food.sugarAlcohol}
+            .col-xs-4
+              h3 Sat.fat:
+            .col-xs-8
+              h3 #{sprintf('%0.2f', device.food.saturatedFat)} g
         .col-xs-6
           .row
-            .col-xs-6
-              p Saturated fat:
-            .col-xs-6
-              p #{device.food.saturatedFat}
+            .col-xs-4
+              h3 Fiber:
+            .col-xs-8
+              h3 #{sprintf('%0.2f', device.food.fiber)} g
           .row
-            .col-xs-6
-              p Fiber:
-            .col-xs-6
-              p #{device.food.energy}
-          .row
-            .col-xs-6
-              p Sugar:
-            .col-xs-6
-              p #{device.food.sugar}
-          .row
-            .col-xs-6
-              p Carbohydrate:
-            .col-xs-6
-              p #{device.food.carbohydrate}
-          .row
-            .col-xs-6
-              p Salt:
-            .col-xs-6
-              p #{device.food.salt}
+            .col-xs-4
+              h3 Carbs:
+            .col-xs-8
+              h3 #{sprintf('%0.2f', device.food.carbohydrate)} g

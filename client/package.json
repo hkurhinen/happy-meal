@@ -1,0 +1,19 @@
+{
+  "name": "happy-meal-client",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/hkurhinen/happy-meal",
+  "keywords": [],
+  "author": "Heikki Kurhinen",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  },
+  "dependencies": {
+    "socket.io-client": "^1.5.1"
+  }
+}

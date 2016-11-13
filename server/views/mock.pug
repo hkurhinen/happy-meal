@@ -1,0 +1,31 @@
+extends layout
+
+block view_styles
+  link(rel='stylesheet', href='/css/main.css')
+
+block view_scripts
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/mock.js')
+
+block content
+  p Device:
+  select.device-id
+    each device in devices
+      option(value=device.deviceId) #{device.deviceId}
+  br
+  br
+  p Tag:
+  input.user-tag(type='text')
+  br
+  br
+  p Amount:
+  input.food-amount(type='text')
+  br
+  br
+  button.btn.btn-primary.user-arrived User arrived
+  br
+  br
+  button.btn.btn-primary.food-changed Food changed
+  br
+  br
+  button.btn.btn-primary.user-left User left

@@ -3,7 +3,37 @@ var request = require('request');
 var Device = require('../model/device');
 var Role = auth.Role;
 
-module.exports = (app, passport) => {
+module.exports = (app, io, passport) => {
+
+  io.on('connection', function (socket) {
+    console.log('connected');
+
+    socket.on('tag-found', function(data){
+      io.emit('user-arrived');
+    });
+
+    socket.on('food-changed', function(data){
+      io.emit('selected-food', {amount: data.amount});
+      console.log('food changed: '+data.amount);
+    });
+
+    socket.on('food-taken', function(data){
+      console.log('food taken: '+data.amount);
+      io.emit('food-updated');
+    });
+  });
+
+
+  app.get('/mock', (req, res) => {
+        Device.find({}, (err, devices) => {
+      if(err) {
+        res.status(500).send(err);
+      } else {
+        res.render('mock', {title: 'Data mock', devices: devices});
+      }
+    });
+  });
+
 
   app.get('/', auth.authenticate([Role.ADMIN, Role.USER]), (req, res) => {
     res.render('index', {title: 'Happy Meal', user: req.user, role: Role});
@@ -52,6 +82,7 @@ module.exports = (app, passport) => {
             if(err) {
               res.status(500).send(err);
             } else {
+              io.emit('food-updated');
               res.send(device);
             }
           });
@@ -112,6 +143,26 @@ module.exports = (app, passport) => {
         } else {
           var device = devices[0];
           res.render('device-idle', {device: device});
+        }
+      }
+    })
+  });
+
+  app.get('/achievement', (req, res) => {
+    res.render('achievement');
+  });
+
+  app.get('/food/:deviceId/user', (req, res) => {
+    var deviceId = req.params.deviceId;
+    Device.find({deviceId: deviceId}, (err, devices) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        if(!devices.length) {
+          res.status(404).send();
+        } else {
+          var device = devices[0];
+          res.render('device-taking', {device: device});
         }
       }
     })

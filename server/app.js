@@ -37,11 +37,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.locals.sprintf = require('sprintf').sprintf;
+
 auth.initPassport(passport);
 
-require('./routes')(app, passport);
-
 var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+require('./routes')(app, io, passport);
 
 http.listen(conf.port, function(){
   console.log('listening on *:'+conf.port);
