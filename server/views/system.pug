@@ -1,0 +1,34 @@
+extends layout
+
+block view_styles
+  link(rel='stylesheet', href='/css/main.css')
+
+block view_scripts
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js')
+  script(src='/js/system.js')
+
+block content
+  include includes/nav.pug
+  .row
+    .col-xs-6
+      h3 Devices
+      .row
+        .col-xs-12
+          button.btn.btn-primary.add-device-btn add device
+      br
+      .row
+        .col-xs-12
+          each device in devices
+            .panel.panel-info.device-container(data-device-id=device._id)
+              .panel-body #{device.name} / #{device.deviceId} / current food: #{device.food.name}
+    .col-xs-6
+      h3 Foods
+      .row
+        .col-xs-10
+          input.form-control.food-search(type='text')
+        .col-xs-2
+          button.btn.btn-primary.food-search-btn search
+      br
+      .row
+        .col-xs-12.search-results
+      

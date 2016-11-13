@@ -1,0 +1,65 @@
+doctype html
+html
+  include includes/head.pug
+  body
+    .container-fluid
+      h1 #{device.food.name}
+      br
+      .row
+        .col-xs-6
+          .row
+            .col-xs-6
+              p Energy:
+            .col-xs-6
+              p #{device.food.energy}
+          .row
+            .col-xs-6
+              p Protein:
+            .col-xs-6
+              p #{device.food.protein}
+          .row
+            .col-xs-6
+              p Fat:
+            .col-xs-6
+              p #{device.food.fat}
+          .row
+            .col-xs-6
+              p Alcohol:
+            .col-xs-6
+              p #{device.food.alcohol}
+          .row
+            .col-xs-6
+              p Organic acids:
+            .col-xs-6
+              p #{device.food.organicAcids}
+          .row
+            .col-xs-6
+              p Sugar alcohol:
+            .col-xs-6
+              p #{device.food.sugarAlcohol}
+        .col-xs-6
+          .row
+            .col-xs-6
+              p Saturated fat:
+            .col-xs-6
+              p #{device.food.saturatedFat}
+          .row
+            .col-xs-6
+              p Fiber:
+            .col-xs-6
+              p #{device.food.energy}
+          .row
+            .col-xs-6
+              p Sugar:
+            .col-xs-6
+              p #{device.food.sugar}
+          .row
+            .col-xs-6
+              p Carbohydrate:
+            .col-xs-6
+              p #{device.food.carbohydrate}
+          .row
+            .col-xs-6
+              p Salt:
+            .col-xs-6
+              p #{device.food.salt}

@@ -1,0 +1,8 @@
+extends layout
+
+block view_styles
+  link(rel='stylesheet', href='/css/main.css')
+
+block content
+  include includes/nav.pug
+  h1 Hello, #{user.username}
